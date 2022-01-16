@@ -1,12 +1,11 @@
 package ex11;
 
 class 동물 {
-    // 무효화
-    void loserName() {
 
+    void attackName() {
     }
 
-    void loseHp(int winAttack) {
+    void showLeftHp(int unit2) {
 
     }
 }
@@ -22,13 +21,13 @@ class 사자 extends 동물 {
         this.attack = attack;
     }
 
-    void loserName() {
-        System.out.println(name + "가 공격당하고 있습니다.");
+    void attackName() {
+        System.out.println(this.name + "가 공격받고 있습니다.");
     }
 
-    void loseHp(int winAttack) {
-        this.hp = this.hp - winAttack;
-        System.out.println(name + "의 hp : " + hp);
+    void showLeftHp(int unit2) {
+        this.hp = this.hp - unit2;
+        System.out.println("남은 hp : " + this.hp);
     }
 }
 
@@ -43,61 +42,35 @@ class 호랑이 extends 동물 {
         this.attack = attack;
     }
 
-    void loserName() {
-        System.out.println(name + "가 공격당하고 있습니다.");
+    void attackName() {
+        System.out.println(this.name + "가 공격받고 있습니다.");
     }
 
-    void loseHp(int winAttack) {
-        this.hp = this.hp - winAttack;
-        System.out.println(name + "의 hp : " + hp);
-    }
-}
-
-class 곰 extends 동물 {
-    String name;
-    int hp;
-    int attack;
-
-    곰(String name, int hp, int attack) {
-        this.name = name;
-        this.hp = hp;
-        this.attack = attack;
+    void showLeftHp(int unit2) {
+        this.hp = this.hp - unit2;
+        System.out.println("남은 hp : " + this.hp);
     }
 
-    void loserName() {
-        System.out.println(name + "이 공격당하고 있습니다.");
-    }
-
-    void loseHp(int winAttack) {
-        this.hp = this.hp - winAttack;
-        System.out.println(name + "의 hp : " + hp);
-    }
 }
 
 public class ExtendsEx02 {
 
-    static void attack(동물 unit) {
-        unit.loserName();
+    static void underAttack(동물 unit1) {
+        unit1.attackName();
     }
 
-    static void lose(동물 unit, int winAttack) {
-        unit.loseHp(winAttack);
+    static void leftHp(동물 unit1, int unit2) {
+        unit1.showLeftHp(unit2);
     }
 
     public static void main(String[] args) {
+        // 사자가 호랑이 공격
         사자 lion = new 사자("사자", 100, 10);
         호랑이 tiger = new 호랑이("호랑이", 100, 20);
-        곰 bear = new 곰("곰", 500, 30);
 
-        /**
-         * attack(Class 공격당하는Class)
-         * lose(Class 공격당하는Class, int 공격하는Class.attack)
-         */
-        attack(tiger);
-        lose(tiger, lion.attack);
-        attack(lion);
-        lose(lion, tiger.attack);
-        attack(bear);
-        lose(bear, tiger.attack);
+        underAttack(lion);
+        leftHp(lion, tiger.attack);
+        underAttack(tiger);
+        leftHp(tiger, lion.attack);
     }
 }

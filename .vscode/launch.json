@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ExtendsEx02",
+            "request": "launch",
+            "mainClass": "ex11.ExtendsEx02",
+            "projectName": "java-green-2022_eeef45a2"
+        },
+        {
+            "type": "java",
+            "name": "Launch ttt",
+            "request": "launch",
+            "mainClass": "ex11.ttt",
+            "projectName": "java-green-2022_eeef45a2"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
