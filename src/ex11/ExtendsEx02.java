@@ -1,76 +1,127 @@
 package ex11;
 
 class 동물 {
-
-    void attackName() {
+    String getName() {
+        return "";
     }
 
-    void showLeftHp(int unit2) {
+    void setHp(int hp) {
+    }
 
+    int getHp() {
+        return 0;
+    }
+
+    int getAttack() {
+        return 0;
     }
 }
 
 class 사자 extends 동물 {
-    String name;
-    int hp;
-    int attack;
+    String name = "사자";
+    int hp = 100;
+    int attack = 10;
 
-    사자(String name, int hp, int attack) {
-        this.name = name;
+    String getName() {
+        return name;
+    }
+
+    void setHp(int hp) {
         this.hp = hp;
-        this.attack = attack;
     }
 
-    void attackName() {
-        System.out.println(this.name + "가 공격받고 있습니다.");
+    int getHp() {
+        return hp;
     }
 
-    void showLeftHp(int unit2) {
-        this.hp = this.hp - unit2;
-        System.out.println("남은 hp : " + this.hp);
+    int getAttack() {
+        return attack;
     }
 }
 
 class 호랑이 extends 동물 {
-    String name;
-    int hp;
-    int attack;
+    String name = "호랑이";
+    int hp = 100;
+    int attack = 15;
 
-    호랑이(String name, int hp, int attack) {
-        this.name = name;
+    String getName() {
+        return name;
+    }
+
+    void setHp(int hp) {
         this.hp = hp;
-        this.attack = attack;
     }
 
-    void attackName() {
-        System.out.println(this.name + "가 공격받고 있습니다.");
+    int getHp() {
+        return hp;
     }
 
-    void showLeftHp(int unit2) {
-        this.hp = this.hp - unit2;
-        System.out.println("남은 hp : " + this.hp);
+    int getAttack() {
+        return attack;
+    }
+}
+
+class 곰 extends 동물 {
+    String name = "곰";
+    int hp = 100;
+    int attack = 50;
+
+    String getName() {
+        return name;
     }
 
+    void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    int getHp() {
+        return hp;
+    }
+
+    int getAttack() {
+        return attack;
+    }
+}
+
+class 늑대 extends 동물 {
+    String name = "늑대";
+    int hp = 100;
+    int attack = 30;
+
+    String getName() {
+        return name;
+    }
+
+    void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    int getHp() {
+        return hp;
+    }
+
+    int getAttack() {
+        return attack;
+    }
 }
 
 public class ExtendsEx02 {
 
-    static void underAttack(동물 unit1) {
-        unit1.attackName();
-    }
-
-    static void leftHp(동물 unit1, int unit2) {
-        unit1.showLeftHp(unit2);
+    static void attack(동물 unit1, 동물 unit2) {
+        System.out.println(unit1.getName() + "가 " + unit2.getName() + "을 공격하고 있습니다");
+        unit2.setHp(unit2.getHp() - unit1.getAttack());
+        System.out.println(unit2.getName() + "의 hp : " + unit2.getHp());
     }
 
     public static void main(String[] args) {
-        // 사자가 호랑이 공격
-        사자 lion = new 사자("사자", 100, 10);
-        호랑이 tiger = new 호랑이("호랑이", 100, 20);
+        동물 lion = new 사자();
+        동물 tiger = new 호랑이();
+        동물 bear = new 곰();
+        동물 wolf = new 늑대();
 
-        underAttack(lion);
-        leftHp(lion, tiger.attack);
-        underAttack(tiger);
-        leftHp(tiger, lion.attack);
+        attack(lion, tiger);
+        attack(lion, bear);
+        attack(tiger, bear);
+        attack(wolf, lion);
     }
 }

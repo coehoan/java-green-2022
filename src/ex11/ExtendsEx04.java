@@ -1,37 +1,97 @@
 package ex11;
 
-class Animal {
-    String name;
+// abstract class = 추상클래스
+// 1. new 할 수 없다.
+// 2. 추상 메서드를 만들 수 있다.(객체의 행위를 공통적으로 정의할 수 없을 때)
+// 3. 일반 메서드도 만들 수 있다.(모든 구체적인 애들의 공통적인 것)
+abstract class ProtossUnit {
+    abstract void setHp(int hp);
 
-    void setName(String name) {
-        this.name = name;
+    abstract int getHp();
+
+    abstract int getAttack();
+}
+
+// 1. 일반 클래스는 추상 메서드를 가질 수 없다.
+class Zealot extends ProtossUnit {
+    // 상태변수는 new 할 때 heap으로 들어간다
+    String name = "질럿";
+    int hp = 100;
+    int attack = 10;
+
+    @Override
+    void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    @Override
+    int getHp() {
+        return hp;
+    }
+
+    @Override
+    int getAttack() {
+        return attack;
     }
 }
 
-class Dog extends Animal {
+class Dragoon extends ProtossUnit {
+    String name = "드라군";
+    int hp = 100;
+    int attack = 20;
 
-    // int가 안들어왔을때 실행 Line 27
-    void sleep() {
-        System.out.println(this.name + " zzz");
+    @Override
+    void setHp(int hp) {
+        this.hp = hp;
     }
 
-    // int가 들어왔을때 실행 Line 28 ok dz?
-    void sleep(int hour) {
-        System.out.println(this.name + " zzz in house for" + hour + "hours");
+    @Override
+    int getHp() {
+        return hp;
     }
 
-    // String이 들어왔을때 실행
-    void sleep(String str) {
-        System.out.println(this.name + " " + str);
+    @Override
+    int getAttack() {
+        return attack;
     }
+}
+
+class DarkTempler extends ProtossUnit {
+    String name = "다크템플러";
+    int hp = 100;
+    int attack = 50;
+
+    @Override
+    void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    @Override
+    int getHp() {
+        return hp;
+    }
+
+    @Override
+    int getAttack() {
+        return attack;
+    }
+
 }
 
 public class ExtendsEx04 {
+
+    static void attack(ProtossUnit u1, ProtossUnit u2) {
+        // 1. u1이 u2를 공격 -> u2.hp = u2.hp - u1.attack -> 자식 변수에 접근이 안되기때문에 오버라이드 사용.
+        u2.setHp(u2.getHp() - u1.getAttack());
+        // 2. u2의 hp를 출력 -> sysout(u2.hp)
+        System.out.println(u2.getHp());
+    }
+
     public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.setName("happy");
-        dog.sleep(); // happy zzz in house 출력
-        dog.sleep(99); // happy zzz in house for 3 hours 출력
-        dog.sleep("안잔다 임마");
+        ProtossUnit z1 = new Zealot();
+        ProtossUnit d1 = new Dragoon();
+        ProtossUnit dt1 = new DarkTempler();
+        attack(z1, d1);
+        attack(dt1, z1);
     }
 }
