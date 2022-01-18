@@ -10,7 +10,7 @@ public class LibEx01 {
         System.out.println(result2);
         System.out.println(result3);
 
-        System.out.println("===================================");
+        System.out.println("=====================================");
         double a = 1234.56789;
         System.out.println(Math.round(a));
 
