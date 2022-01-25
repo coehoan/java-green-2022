@@ -14,12 +14,14 @@ import lombok.Setter;
 class 사자 {
     private String name;
     private String color;
+    private int age;
 }
 
 public class TestLombok {
     public static void main(String[] args) {
-        사자 s = new 사자("사자", "노랑");
+        사자 s = new 사자("사자", "노랑", 8);
         System.out.println(s.getName());
         System.out.println(s.getColor());
+        System.out.println(s.getAge());
     }
 }
