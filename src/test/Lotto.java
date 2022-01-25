@@ -11,13 +11,13 @@ public class Lotto {
     public static void main(String[] args) {
         // 1. 당첨번호 정하기(998회차 당첨번호)
         ArrayList<Integer> winNumber = new ArrayList<Integer>();
-        winNumber.add(13);
-        winNumber.add(17);
+        winNumber.add(1);
+        winNumber.add(3);
+        winNumber.add(9);
+        winNumber.add(14);
         winNumber.add(18);
-        winNumber.add(20);
-        winNumber.add(42);
-        winNumber.add(45);
-        winNumber.add(41); // 보너스 번호
+        winNumber.add(28);
+        winNumber.add(34); // 보너스 번호
 
         // 2. 스캐너로 금액입력
         System.out.println("금액을 입력하세요.");
