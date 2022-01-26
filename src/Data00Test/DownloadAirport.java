@@ -1,4 +1,4 @@
-package data00;
+package Data00Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,29 +10,31 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import data00.AirportDto.Body.Items.Item;
+import Data00Test.AirportDto.Body.Items.AirportItem;
 
-public class Test02 {
-    public static void main(String[] args) {
+public class DownloadAirport {
+    public static Map<String, String> getAirportList() {
+        Map<String, String> airportMap = new HashMap<>();
+        URL url;
         try {
-            URL url = new URL(
+            url = new URL(
                     "http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/getArprtList?serviceKey=wJmmW29e3AEUjwLioQR22CpmqS645ep4S8TSlqtSbEsxvnkZFoNe7YG1weEWQHYZ229eNLidnI2Yt5EZ3Stv7g%3D%3D&_type=json");
+
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "utf-8"));
+
             String responseJson = br.readLine();
             Gson gson = new Gson();
             AirportDto dto = gson.fromJson(responseJson, AirportDto.class);
-            List<Item> result = dto.getResponse().getBody().getItems().getItem();
-            System.out.println(result);
-            // 최종
-            Map<String, String> airportMap = new HashMap<>();
+            List<AirportItem> result = dto.getResponse().getBody().getItems().getItem();
+
             for (int i = 0; i < result.size(); i++) {
                 airportMap.put(result.get(i).getAirportNm(), result.get(i).getAirportId());
             }
-            System.out.println(airportMap.get("제주"));
-
         } catch (Exception e) {
-            System.out.println("잘못된 주소");
+            System.out.println("공항목록 조회 오류");
         }
+        return airportMap;
     }
 }
